@@ -16,8 +16,6 @@ class ConcursoTest {
 		Concurso java = new Concurso("java", 1234, LocalDate.now(), duracionDelCurso, direccion);
 		java.inscribirParticipante(new Participante("Juan", 52));
 		java.inscribirParticipante(new Participante("Jonathan", 39));
-		Participante Juan = java.participantes.get(1);
-
 		assertEquals(true, java.estaInscripto("Juan"));
 
 	}

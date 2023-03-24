@@ -3,6 +3,8 @@ package concurso;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import persistance.DiscoRegistro;
+
 public class Concurso {// El objetivo es cumplir con las consignas asignadas por ende hay atributos que
 						// se omiten a fin de reducir el tiempo
 	// --- Atributos ---
@@ -11,7 +13,7 @@ public class Concurso {// El objetivo es cumplir con las consignas asignadas por
 	ArrayList<Participante> participantes;
 	private String nombre;
 	private int idConcurso;
-	private DiscoRegistroInscripcion enDisco;
+	private DiscoRegistro enDisco;
 
 	public Concurso(String nombre, int codigo, LocalDate fecha, int duracionDelCurso, String ruta) {
 		iInscripcion = fecha;
@@ -19,7 +21,7 @@ public class Concurso {// El objetivo es cumplir con las consignas asignadas por
 		this.idConcurso = codigo;
 		this.participantes = new ArrayList<Participante>();
 		this.nombre = nombre;
-		this.enDisco = new DiscoRegistroInscripcion(ruta);
+		this.enDisco = new DiscoRegistro(ruta);
 
 	}
 
@@ -36,7 +38,7 @@ public class Concurso {// El objetivo es cumplir con las consignas asignadas por
 	}
 
 	private String registro(Participante unParticipante) {
-		return LocalDate.now().toString() + "||" + unParticipante.id() + "||" + this.idConcurso + "\n";
+		return LocalDate.now() + "||" + unParticipante.id() + "||" + this.idConcurso + "\n";
 	}
 
 	private boolean sePuedeInscribir() {

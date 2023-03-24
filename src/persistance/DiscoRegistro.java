@@ -1,15 +1,16 @@
-package concurso;
+package persistance;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
 
-public class DiscoRegistroInscripcion implements RegistroInscripcion {
+public class DiscoRegistro implements Registro {
 
 	private String ruta;
 
-	public DiscoRegistroInscripcion(String direccion) {
+	public DiscoRegistro(String direccion) {
 		this.ruta = direccion;
 		// TODO Auto-generated constructor stub
 	}
@@ -24,6 +25,17 @@ public class DiscoRegistroInscripcion implements RegistroInscripcion {
 		}
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void registrarVenta(Double importe) {
+		// TODO Auto-generated method stub
+		String total = LocalDate.now() + " || " + String.valueOf(importe);
+		try {
+			Files.write(Paths.get(ruta), total.getBytes(), StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
