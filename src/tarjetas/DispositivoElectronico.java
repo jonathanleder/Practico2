@@ -13,9 +13,11 @@ public class DispositivoElectronico {
 	}
 
 	public double calcularCostoTotal(Tarjeta unaTarjeta, double propina) {
-		double descuento = unaTarjeta.calcularDescuento(pedido.importeBebida(), pedido.importePlato());
-		disco.registrarVenta(pedido.importeTotal() + pedido.calcularPropina(propina) - descuento);
-		return pedido.importeTotal() + pedido.calcularPropina(propina) - descuento;
+		return disco.registrarVenta(pedido.importeTotal() + pedido.calcularPropina(propina) - descuento(unaTarjeta));
+	}
+
+	private double descuento(Tarjeta unaTarjeta) {
+		return unaTarjeta.calcularDescuento(pedido.importeBebida(), pedido.importePlato());
 	}
 
 }

@@ -31,7 +31,8 @@ public class Concurso {// El objetivo es cumplir con las consignas asignadas por
 			if (esPrimerDia())
 				unParticipante.sumarPuntos();
 			this.participantes.add(unParticipante);// Se inscribe el participante
-			this.enDisco.registrarParticipante(registro(unParticipante));
+			// this.enDisco.registrarParticipante(registro(unParticipante));//en un archivo
+			this.enDisco.registrarParticipanteBd(unParticipante, idConcurso);// en Base de datos
 		} else
 			throw new RuntimeException("no se puede inscribir");
 
@@ -45,9 +46,6 @@ public class Concurso {// El objetivo es cumplir con las consignas asignadas por
 		return LocalDate.now().isBefore(fInscripcion) && LocalDate.now().isAfter(iInscripcion.minusDays(1));
 	}// Le resto un dia para simular un mayor o igual
 
-//	public boolean estaInscripto(Participante participante) { se compara por objeto
-//		return this.participantes.contains(participante);
-//	}
 	public boolean estaInscripto(String nombreParticipante) {// Se compara por nombre
 		for (Participante participante : this.participantes) {
 			if (participante.nombre().equals(nombreParticipante)) {
@@ -61,11 +59,9 @@ public class Concurso {// El objetivo es cumplir con las consignas asignadas por
 		return LocalDate.now().isEqual(iInscripcion);
 	}
 
-	public ArrayList mostrarParticipantes() {
-		if (this.participantes.isEmpty())
-			throw new RuntimeException("No hay Participantes inscriptos");
-		else {
-			return this.participantes;
-		}
+	public int id() {
+		// TODO Auto-generated method stub
+		return this.idConcurso;
 	}
+
 }
