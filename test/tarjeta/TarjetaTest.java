@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import persistance.DiscoRegistro;
 import tarjetas.Bebida;
 import tarjetas.DispositivoElectronico;
 import tarjetas.Pedido;
@@ -17,11 +18,15 @@ class TarjetaTest {
 		double valorEsperado = 824;// 824 es el costo total 26
 		Plato ravioles = new Plato("Ravioles con tuco", 500);
 		Bebida gaseosa = new Bebida("Fanta", 300);
-		String direccion = "C:\\\\\\\\Users\\\\\\\\jonyl\\\\\\\\Desktop\\\\\\\\registro_ventas.txt";
+		String direccion = "C:\\\\\\\\Users\\\\\\\\jonyl\\\\\\\\Desktop\\\\\\\\registro_ventas.txt";// deberia ser un
+																									// objeto que use la
+																									// interface
+																									// Registro
+		DiscoRegistro disco = new DiscoRegistro(direccion);
 		Pedido miPedido = new Pedido(ravioles, gaseosa);
 		TarjetaComarcaPlus comarca = new TarjetaComarcaPlus("Jonathan Leder", 456123789, 850);
 
-		DispositivoElectronico miDispositivo = new DispositivoElectronico(miPedido, direccion);
+		DispositivoElectronico miDispositivo = new DispositivoElectronico(miPedido, disco);
 		assertEquals(valorEsperado, miDispositivo.calcularCostoTotal(comarca, 5));
 	}
 

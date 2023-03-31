@@ -6,14 +6,28 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import persistance.BaseDeDatosRegistro;
+import persistance.DiscoRegistro;
+
 class ConcursoTest {
 
 	@Test
 	void testInscribirParticipantePrimerDia() {
 
 		int duracionDelCurso = 10;
-		String direccion = "C:\\\\Users\\\\jonyl\\\\Desktop\\\\registro_participantes.txt";
-		Concurso java = new Concurso("java", 1234, LocalDate.now(), duracionDelCurso, direccion);
+		String direccion = "C:\\\\Users\\\\jonyl\\\\Desktop\\\\registro_participantes.txt";// en vez de un String
+																							// deberia ingresar un
+																							// objeto que implementa la
+																							// interface registro
+		DiscoRegistro disco = new DiscoRegistro(direccion);
+		// Creacion para la base de datos
+
+		String url = "jdbc:mysql://localhost:3306/objetos2";
+		String user = "root";
+		String pass = "";
+		BaseDeDatosRegistro baseDeDatos = new BaseDeDatosRegistro(url, user, pass);
+
+		Concurso java = new Concurso("java", 1234, LocalDate.now(), duracionDelCurso, baseDeDatos);
 		java.inscribirParticipante(new Participante("Juan", 52));
 		java.inscribirParticipante(new Participante("Jonathan", 39));
 		assertEquals(true, java.estaInscripto("Juan"));

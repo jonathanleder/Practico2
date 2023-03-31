@@ -1,19 +1,20 @@
 package tarjetas;
 
-import persistance.DiscoRegistro;
+import interfaces.Registro;
 
 public class DispositivoElectronico {
 
 	private Pedido pedido;
-	private DiscoRegistro disco;
+	private Registro registro;
 
-	public DispositivoElectronico(Pedido unPedido, String ruta) {
+	public DispositivoElectronico(Pedido unPedido, Registro ruta) {
 		this.pedido = unPedido;
-		this.disco = new DiscoRegistro(ruta);
+		this.registro = ruta;
 	}
 
 	public double calcularCostoTotal(Tarjeta unaTarjeta, double propina) {
-		return disco.registrarVenta(pedido.importeTotal() + pedido.calcularPropina(propina) - descuento(unaTarjeta));
+		registro.registrarVenta(pedido.importeTotal() + pedido.calcularPropina(propina) - descuento(unaTarjeta));
+		return pedido.importeTotal() + pedido.calcularPropina(propina) - descuento(unaTarjeta);
 	}
 
 	private double descuento(Tarjeta unaTarjeta) {
