@@ -11,7 +11,7 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
-public class Email implements Notificacion {
+public class EmailNotificacion implements Notificacion {
 
 	private final String username = "1f4ee2306cdd2f";
 	private final String password = "e95be69fe86d28";
@@ -20,11 +20,13 @@ public class Email implements Notificacion {
 	private String destinatario;
 	private String asunto;
 	private String mensaje;
+	private boolean enviado;
 
-	public Email(String destinatario, String asunto, String mensaje) {
+	public EmailNotificacion(String destinatario, String asunto, String mensaje) {
 		this.destinatario = destinatario;
 		this.asunto = asunto;
 		this.mensaje = mensaje;
+		this.enviado = false;
 	}
 
 	@Override
@@ -54,7 +56,14 @@ public class Email implements Notificacion {
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
+		this.enviado = true;
 		return true;
+	}
+
+	@Override
+	public boolean seNotifico() {
+
+		return this.enviado;
 	}
 
 }

@@ -20,14 +20,14 @@ public class DiscoRegistro implements Registro {
 	}
 
 	@Override
-	public void registrarParticipante(Participante inscripto, Concurso concurso) {
+	public boolean registrarParticipante(Participante inscripto, Concurso concurso) {
 
 		try {
 			Files.write(Paths.get(ruta), registro(inscripto, concurso).getBytes(), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		// TODO Auto-generated method stub
+		return true;
 
 	}
 

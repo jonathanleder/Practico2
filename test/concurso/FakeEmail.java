@@ -1,4 +1,4 @@
-package persistance;
+package concurso;
 
 import interfaces.Notificacion;
 
@@ -11,7 +11,13 @@ public class FakeEmail implements Notificacion {
 	@Override
 	public boolean enviarNotificacion() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
+	}
+
+	@Override
+	public boolean seNotifico() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

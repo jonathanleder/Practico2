@@ -24,7 +24,7 @@ public class BaseDeDatosRegistro implements Registro {
 	}
 
 	@Override
-	public void registrarParticipante(Participante participante, Concurso concurso) {
+	public boolean registrarParticipante(Participante participante, Concurso concurso) {
 
 		try {
 			try {
@@ -38,15 +38,13 @@ public class BaseDeDatosRegistro implements Registro {
 			int cant = sent.executeUpdate("insert into concursos(fecha, id_participante, id_concurso) " + "values("
 					+ LocalDate.now() + ", " + participante.id() + " ," + concurso.id() + ")");
 
-			if (cant == 1) {
-				System.out.println("Se registro correctamente");
-			}
 			sent.close();
 			miConexion.close();
 		} catch (SQLException e) {
 			System.out.println("Error de conexion");
 			e.printStackTrace();
 		}
+		return true;
 
 	}
 
