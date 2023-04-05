@@ -28,7 +28,6 @@ public class DiscoRegistro implements Registro {
 			throw new RuntimeException(e);
 		}
 		return true;
-
 	}
 
 	private String registro(Participante unParticipante, Concurso concurso) {

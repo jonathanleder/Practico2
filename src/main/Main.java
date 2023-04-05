@@ -25,18 +25,17 @@ public class Main {
 		Bebida gaseosa = new Bebida("Fanta", 300);
 		Pedido miPedido = new Pedido(ravioles, gaseosa);
 		// Creacion de disco local
-		String direccion = "C:\\\\\\\\Users\\\\\\\\jonyl\\\\\\\\Desktop\\\\\\\\registro_ventas.txt";
-		DiscoRegistro disco = new DiscoRegistro(direccion);
+
+		DiscoRegistro disco = new DiscoRegistro(
+				"C:\\\\\\\\Users\\\\\\\\jonyl\\\\\\\\Desktop\\\\\\\\registro_ventas.txt");
 
 		// Creacion de base de datos
-		String url = "jdbc:mysql://localhost:3306/objetos2";
-		String user = "root";
-		String pass = "";
-		BaseDeDatosRegistro baseDeDatos = new BaseDeDatosRegistro(url, user, pass);
+
+		BaseDeDatosRegistro baseDeDatos = new BaseDeDatosRegistro("jdbc:mysql://localhost:3306/objetos2", "root", "");
 
 		// Creacion de tipo notificacion
-		Notificacion email = new EmailNotificacion("inscripcioaconcursos@example.com", "Inscripcion al concurso elegido ",
-				"su solicitud fue aprobada");
+		Notificacion email = new EmailNotificacion("inscripcioaconcursos@example.com",
+				"Inscripcion al concurso elegido ", "su solicitud fue aprobada");
 
 		// Prueba Tarjetas
 
@@ -48,9 +47,9 @@ public class Main {
 
 		int duracionDelCurso = 10;
 
-		Concurso java = new Concurso("java", 1234, LocalDate.now(), duracionDelCurso, baseDeDatos, email);
-		java.inscribirParticipante(new Participante("Juan", 52));
-		java.inscribirParticipante(new Participante("Jona", 39));
+		Concurso java = new Concurso("java", 199, LocalDate.now(), duracionDelCurso, baseDeDatos, email);
+		java.inscribirParticipante(new Participante("Juan", 98));
+		java.inscribirParticipante(new Participante("Jonathan", 56));
 
 	}
 

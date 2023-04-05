@@ -19,23 +19,17 @@ class ConcursoTest {
 		int duracionDelCurso = 10;
 
 		// Creacion para almacenamiento local
-		String direccion = "C:\\\\Users\\\\jonyl\\\\Desktop\\\\registro_participantes.txt";
-		DiscoRegistro disco = new DiscoRegistro(direccion);
+		DiscoRegistro disco = new DiscoRegistro("C:\\\\Users\\\\jonyl\\\\Desktop\\\\registro_participantes.txt");
 
 		// Creacion para la base de datos
-		String url = "jdbc:mysql://localhost:3306/objetos2";
-		String user = "root";
-		String pass = "";
-		BaseDeDatosRegistro baseDeDatos = new BaseDeDatosRegistro(url, user, pass);
-
-		// Creacion del fakeMail
-		Notificacion notificacion = new FakeEmail();
-		boolean notificacionEnviada = notificacion.enviarNotificacion();
+		BaseDeDatosRegistro baseDeDatos = new BaseDeDatosRegistro("jdbc:mysql://localhost:3306/objetos2", "root", "");
 
 		// Creacion del fakeRegistro
 		Registro registroFake = new FakeRegistro();
 		// Creacion de fakeNotificacion
-		Notificacion emailFake = new FakeEmail();
+		Notificacion emailFake = new FakeEmail("inscripcioaconcursos@example.com", "Inscripcion al concurso elegido ",
+				"su solicitud fue aprobada");
+		boolean notificacionEnviada = emailFake.enviarNotificacion();
 
 		// Implementacion
 		Concurso java = new Concurso("java", 1234, LocalDate.now(), duracionDelCurso, registroFake, emailFake);
